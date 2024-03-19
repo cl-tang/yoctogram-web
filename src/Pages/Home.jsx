@@ -6,7 +6,7 @@ import 'swiper/css/virtual';
 import { Card, Grid, CardContent, Box, CardHeader, Typography, CardMedia, IconButton, Paper } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-import { fetchLatestFeed, fetchUserById, fetchCurrentUser, retrieveImage } from '../utils/api';
+import { fetchLatestFeed, fetchUserById, fetchCurrentUser, retrievePost } from '../utils/api';
 
 
 import EmptyIcon from '@mui/icons-material/RemoveCircleOutline'; // Import an icon that fits the empty state
@@ -53,7 +53,7 @@ export default function Home() {
             // console.log("latestPosts posts", latestPosts)
 
             
-            // Fetch user details and images for each post
+            // Fetch user details and post for each post
             const postsWithDetailsPromises = latestPosts?.results.map(async (post) => {
                 const userDetails = await fetchUserById(post.creator);
                 const imageBlob = await retrieveImage(post.download_url); // Fetch image as a blob

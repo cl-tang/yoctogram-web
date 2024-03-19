@@ -52,11 +52,11 @@ export const fetchUserById = async (userId) => {
 };
 
 export const generateUploadUrl = async (privacy) => {
-  return fetchWithAuth(`/api/v1/images/upload/${privacy}/generate`, { method: 'POST' });
+  return fetchWithAuth(`/api/v1/posts/upload/${privacy}/generate`, { method: 'POST' });
 };
 
-// Images API Endpoints
-export const uploadImage = async (url, file, fields) => {
+// Posts API Endpoints
+export const uploadPost = async (url, file, fields) => {
   const formData = new FormData();
   Object.entries(fields).map(([key, value]) => formData.append(key, value));
   formData.append('file', file);
@@ -81,11 +81,11 @@ export const uploadImage = async (url, file, fields) => {
   }
 };
 
-export const confirmImageUploaded = async (imageId) => {
-  return fetchWithAuth(`/api/v1/images/upload/${imageId}/confirm`, { method: 'POST' });
+export const confirmPostUploaded = async (postId) => {
+  return fetchWithAuth(`/api/v1/posts/upload/${postId}/confirm`, { method: 'POST' });
 };
 
-export const retrieveImage = async (downloadUrl) => {
+export const retrievePost = async (downloadUrl) => {
   if (downloadUrl.indexOf('dev') > -1) {
     // Indicate that the response should be treated as a blob
     return fetchWithAuth(downloadUrl, {}, true);
